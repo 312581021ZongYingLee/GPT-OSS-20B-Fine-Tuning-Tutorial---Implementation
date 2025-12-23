@@ -22,7 +22,7 @@
 ```bash
 # 1. Clone repository
 git clone <your-repo-url>
-cd "Github repo(Tutorial for OrigTek)"
+cd "Github repo"
 
 # 2. 安裝依賴套件
 pip install -r requirements.txt
