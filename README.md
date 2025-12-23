@@ -407,10 +407,10 @@ GPT-OSS-20B-Fine-Tuning-Tutorial/
 
 | 指標 | 基礎模型 | Fine-Tuned 模型 |
 |------|---------|----------------|
-| BLEU | 0.25 | 0.65 |
-| ROUGE-L | 0.30 | 0.70 |
-| METEOR | 0.28 | 0.68 |
-| Perplexity | 15.2 | 8.5 |
+| BLEU | 0.0038 | 0.55 |
+| ROUGE-L | 0.038 | 0.714 |
+| METEOR | 0.091 | 0.701 |
+| Perplexity | X | X |
 
 *實際結果會因資料集和訓練設定而異*
 
