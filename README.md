@@ -408,7 +408,7 @@ test_size=0.2  # 20% 作為測試集
 ## 📁 專案結構
 
 ```
-Github repo(Tutorial for OrigTek)/
+This Github repo/
 ├── README.md                    # 本檔案
 ├── requirements.txt             # Python 依賴套件
 ├── .gitignore                   # Git 忽略規則
