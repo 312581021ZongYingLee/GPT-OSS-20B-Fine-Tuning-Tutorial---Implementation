@@ -17,9 +17,9 @@ GPT-OSS-20B LoRA Fine-tuning Script
     tmux attach -t finetune
 
 注意事項:
-    - 請將訓練資料放在 ./data/YourDataset.csv
+    - 請將訓練資料放在 ./data/SEMI_Fine_Tuning_Data.csv
     - 資料格式：CSV with 'input' and 'output' columns
-    - 訓練時間視資料量和 GPU 而定，建議使用 tmux 背景執行
+    - 訓練時間視資料量和 GPU 而定
 """
 
 import torch
@@ -87,7 +87,7 @@ EVAL_STRATEGY = "epoch"
 # ============================================================================
 # 資料集設定
 # ============================================================================
-CSV_FILE = "./data/YourDataset.csv"  # 請將您的資料集命名為 YourDataset.csv
+CSV_FILE = "./data/SEMI_Fine_Tuning_Data.csv"  # SEMI 訓練資料集
 TEST_SIZE = 110  # Test 和 Validation 各 110 筆（可依實際資料量調整）
 RANDOM_SEED = 42
 
@@ -289,10 +289,10 @@ print("\n" + "=" * 80)
 print("💾 儲存模型...")
 print("=" * 80)
 
-model.save_pretrained("RANK32_gpt_oss_finetuned")
-tokenizer.save_pretrained("RANK32_gpt_oss_finetuned")
+model.save_pretrained("checkpoints")
+tokenizer.save_pretrained("checkpoints")
 
-print("✅ 模型已儲存至: ./RANK32_gpt_oss_finetuned")
+print("✅ 模型已儲存至: ./checkpoints")
 
 # ============================================================================
 # 8. 測試推論
@@ -324,6 +324,6 @@ print("-" * 80)
 print("\n" + "=" * 80)
 print("✅ 全部完成!")
 print("=" * 80)
-print(f"📁 模型位置: ./RANK32_gpt_oss_finetuned")
+print(f"📁 模型位置: ./checkpoints")
 print(f"📁 輸出位置: ./{OUTPUT_DIR}")
 print(f"📁 資料集位置: ./processed_dataset_gpt_oss/")

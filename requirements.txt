@@ -1,26 +1,40 @@
 # GPT-OSS-20B Fine-Tuning Tutorial - Requirements
 # ===============================================
+#
+# 測試環境: RTX 6000 Pro Server (2x RTX 6000 Pro GPU)
+#
+# 安裝說明:
+# 1. 先安裝 PyTorch (RTX 6000 Pro Server 使用 CUDA 12.8):
+#    pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu128
+#
+# 2. 安裝 Unsloth:
+#    pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+#
+# 3. 安裝其他依賴:
+#    pip install -r requirements.txt
+#
 
 # 核心依賴
-unsloth
-torch>=2.0.0
 transformers>=4.35.0
-datasets
-trl
+datasets>=2.14.0
+trl>=0.7.0
+peft>=0.5.0
+accelerate>=0.24.0
+bitsandbytes>=0.41.0
 
 # 下載工具
-gdown
+gdown>=4.7.0
 
 # 評估工具
-evaluate
-nltk
-rouge-score
-sacrebleu
+evaluate>=0.4.0
+nltk>=3.8.0
+rouge-score>=0.1.2
+sacrebleu>=2.3.0
 
 # 資料處理
-pandas
-numpy
-tqdm
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.65.0
 
 # 其他工具
-openpyxl  # for Excel export
+openpyxl>=3.1.0  # for Excel export

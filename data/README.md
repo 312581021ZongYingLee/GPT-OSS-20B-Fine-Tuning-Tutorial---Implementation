@@ -16,7 +16,7 @@
 請將您的訓練資料命名為：
 
 ```
-YourDataset.csv
+SEMI_Fine_Tuning_Data.csv
 ```
 
 並放置在本目錄下。
@@ -31,12 +31,12 @@ YourDataset.csv
 
 ## 範例資料
 
-本目錄包含 `sample_data.csv`，提供 3 筆範例資料供參考格式使用。
+本目錄包含 `SEMI_Fine_Tuning_Data.csv`，為實際訓練資料。
 
-### 查看範例
+### 查看資料
 
 ```bash
-cat data/sample_data.csv
+cat data/SEMI_Fine_Tuning_Data.csv
 ```
 
 或在 Python 中讀取：
@@ -44,7 +44,7 @@ cat data/sample_data.csv
 ```python
 import pandas as pd
 
-df = pd.read_csv('data/sample_data.csv')
+df = pd.read_csv('data/SEMI_Fine_Tuning_Data.csv')
 print(df.head())
 ```
 
@@ -56,7 +56,7 @@ print(df.head())
 
 1. 確保有 `input` 和 `output` 兩個欄位
 2. 另存新檔為 CSV 格式
-3. 重新命名為 `YourDataset.csv`
+3. 重新命名為 `SEMI_Fine_Tuning_Data.csv`
 4. 放置於本目錄
 
 ### 方法 2: 使用 Python 建立
@@ -80,7 +80,7 @@ data = {
 
 # 儲存為 CSV
 df = pd.DataFrame(data)
-df.to_csv('data/YourDataset.csv', index=False)
+df.to_csv('data/SEMI_Fine_Tuning_Data.csv', index=False)
 ```
 
 ## 資料品質建議
@@ -92,8 +92,8 @@ df.to_csv('data/YourDataset.csv', index=False)
 
 ## 注意事項
 
-⚠️ **重要**: 本 repository 不包含實際訓練資料。`sample_data.csv` 僅供格式參考。
+⚠️ **重要**: 本 repository 包含實際訓練資料 `SEMI_Fine_Tuning_Data.csv`。
 
-✅ 請自行準備訓練資料並命名為 `YourDataset.csv`
+✅ 如需使用自己的資料，請替換此檔案或修改腳本中的 `CSV_FILE` 路徑
 
-🔒 訓練資料會被 `.gitignore` 排除，不會被提交至 Git
+🔒 大型訓練資料會被 `.gitignore` 排除，不會被提交至 Git

@@ -13,12 +13,10 @@ GPT-OSS-20B Fine-Tuning Evaluation Script (Complete Version)
 7. Perplexity
 
 使用方法:
-    python evaluation.py --adapter_path ./checkpoints --test_data ./data/YourDataset.csv
+    python evaluation.py --test_data ./data/SEMI_Fine_Tuning_Data.csv
 
-在 tmux 背景執行:
-    tmux new -s eval
-    python evaluation.py --adapter_path ./checkpoints --test_data ./data/YourDataset.csv
-    # 按 Ctrl+B 然後按 D 來 detach
+    # 或指定自訂 adapter 路徑:
+    python evaluation.py --adapter_path ./custom_path --test_data ./data/SEMI_Fine_Tuning_Data.csv
 """
 
 import argparse
@@ -146,17 +144,17 @@ def load_model(adapter_path, max_seq_length=1024, load_in_4bit=False):
     else:
         print(f"⚠️  Adapter 路徑不存在: {adapter_path}")
 
-    # 設置推理模式
-    print("\n步驟 3/3: 設置推理模式...")
-    FastLanguageModel.for_inference(model)
-    print("✅ 模型就緒!")
-
     # 計算參數
     print("\n📊 計算模型參數...")
     param_info = count_parameters(model)
     print(f"   總參數: {param_info['total_parameters']:,}")
     print(f"   可訓練參數: {param_info['trainable_parameters']:,}")
     print(f"   可訓練比例: {param_info['trainable_percentage']:.2f}%")
+
+    # 設置推理模式
+    print("\n步驟 3/3: 設置推理模式...")
+    FastLanguageModel.for_inference(model)
+    print("✅ 模型就緒!")
     print()
 
     return model, tokenizer, adapter_loaded, param_info
@@ -572,8 +570,8 @@ def parse_args():
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
-    parser.add_argument('--adapter_path', type=str, required=True,
-                        help='Adapter 路徑')
+    parser.add_argument('--adapter_path', type=str, default='./checkpoints',
+                        help='Adapter 路徑 (預設: ./checkpoints)')
     parser.add_argument('--test_data', type=str, required=True,
                         help='測試資料 CSV 檔案')
     parser.add_argument('--output_dir', type=str, default='./evaluation_results',

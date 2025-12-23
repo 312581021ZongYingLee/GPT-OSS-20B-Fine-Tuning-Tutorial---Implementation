@@ -54,9 +54,9 @@ env/
 Thumbs.db
 *.log
 
-# Data files (使用者需自備資料)
+# Data files
 data/*.csv
-!data/sample_data.csv  # 保留範例資料
+!data/SEMI_Fine_Tuning_Data.csv  # 保留 SEMI 訓練資料
 !data/README.md
 
 # Jupyter Notebook
