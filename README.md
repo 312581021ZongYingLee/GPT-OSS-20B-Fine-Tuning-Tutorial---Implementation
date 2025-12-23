@@ -27,7 +27,7 @@
 
 ### Step 1: 建立虛擬環境 (建議)
 
-\`\`\`bash
+```bash
 # 使用 conda
 conda create -n gpt-finetune python=3.10
 conda activate gpt-finetune
@@ -36,7 +36,7 @@ conda activate gpt-finetune
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate  # Windows
-\`\`\`
+```
 
 ### Step 2: 安裝依賴套件
 
@@ -44,7 +44,7 @@ source venv/bin/activate  # Linux/Mac
 
 **2.1 安裝 PyTorch (根據您的 CUDA 版本)**
 
-\`\`\`bash
+```bash
 # RTX 6000 Pro Server (CUDA 12.8, 建議)
 pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu128
 
@@ -54,42 +54,42 @@ pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu128
 
 # CUDA 12.1
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-\`\`\`
+```
 
 **2.2 安裝 Unsloth**
 
-\`\`\`bash
+```bash
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
-\`\`\`
+```
 
 **2.3 安裝其他依賴套件**
 
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
 安裝內容包括：
-- \`transformers\`, \`datasets\`, \`trl\`: Hugging Face 套件
-- \`peft\`, \`accelerate\`, \`bitsandbytes\`: 訓練加速工具
-- \`gdown\`: Google Drive 檔案下載工具
-- \`evaluate\`, \`nltk\`, \`rouge-score\`: 評估指標
-- \`pandas\`, \`numpy\`, \`tqdm\`: 資料處理工具
+- `transformers`, `datasets`, `trl`: Hugging Face 套件
+- `peft`, `accelerate`, `bitsandbytes`: 訓練加速工具
+- `gdown`: Google Drive 檔案下載工具
+- `evaluate`, `nltk`, `rouge-score`: 評估指標
+- `pandas`, `numpy`, `tqdm`: 資料處理工具
 
 ### Step 3: 下載 LoRA Checkpoint
 
 使用預設設定下載：
 
-\`\`\`bash
+```bash
 python download_checkpoint.py
-\`\`\`
+```
 
 或指定自訂路徑：
 
-\`\`\`bash
+```bash
 python download_checkpoint.py --output ./custom_checkpoint_path
-\`\`\`
+```
 
-下載完成後，檔案將位於 \`./checkpoints/\` 目錄。
+下載完成後，檔案將位於 `./checkpoints/` 目錄。
 
 ---
 
@@ -103,26 +103,26 @@ python download_checkpoint.py --output ./custom_checkpoint_path
 
 LoRA adapter 包含預訓練的微調參數：
 
-\`\`\`bash
+```bash
 python download_checkpoint.py
-\`\`\`
+```
 
 **說明**:
 - 預設從 Google Drive 下載
 - 檔案大小: < 500MB
-- 下載位置: \`./checkpoints/\`
-- 包含檔案: \`adapter_model.safetensors\`, \`adapter_config.json\`, tokenizer 等
+- 下載位置: `./checkpoints/`
+- 包含檔案: `adapter_model.safetensors`, `adapter_config.json`, tokenizer 等
 
 ### 3. 準備訓練資料
 
 建立或準備您的資料集：
 
-\`\`\`bash
+```bash
 # 資料集格式: CSV with 'input' and 'output' columns
 # 範例請參考 data/SEMI_Fine_Tuning_Data.csv
-\`\`\`
+```
 
-將檔案命名為 \`SEMI_Fine_Tuning_Data.csv\` 並放入 \`data/\` 目錄。
+將檔案命名為 `SEMI_Fine_Tuning_Data.csv` 並放入 `data/` 目錄。
 
 **資料格式範例**:
 
@@ -135,9 +135,9 @@ python download_checkpoint.py
 
 ### 4. 執行 Fine-Tuning 訓練
 
-\`\`\`bash
+```bash
 python train_gpt_oss_20b.py
-\`\`\`
+```
 
 **訓練參數** (可在腳本中調整):
 - LoRA Rank: 32
@@ -145,15 +145,15 @@ python train_gpt_oss_20b.py
 - Epochs: 300 (可調整)
 - Batch Size: 4
 
-訓練完成後，模型將儲存至 \`./checkpoints/\`
+訓練完成後，模型將儲存至 `./checkpoints/`
 
 ### 5. 執行模型評估
 
 評估微調後的模型效能：
 
-\`\`\`bash
+```bash
 python evaluation.py --test_data ./data/SEMI_Fine_Tuning_Data.csv
-\`\`\`
+```
 
 評估指標包括：
 - **BLEU**: 翻譯品質指標
@@ -169,13 +169,13 @@ python evaluation.py --test_data ./data/SEMI_Fine_Tuning_Data.csv
 
 ### 方法 1: 使用下載腳本 (推薦)
 
-\`\`\`bash
+```bash
 python download_checkpoint.py
-\`\`\`
+```
 
 腳本會自動：
 1. 從 Google Drive 下載 LoRA checkpoint 資料夾
-2. 解壓到 \`./checkpoints/\` 目錄
+2. 解壓到 `./checkpoints/` 目錄
 3. 驗證檔案完整性
 
 ### 方法 2: 手動下載
@@ -183,9 +183,9 @@ python download_checkpoint.py
 如果自動下載失敗：
 
 1. 前往 Google Drive 連結:
-   \`\`\`
+   ```
    https://drive.google.com/drive/folders/1VjomTDXwF-jB5BNFYZ1gZb1-iYU_IT1u
-   \`\`\`
+   ```
 
 2. 點擊右上角「下載」圖示
 
@@ -193,7 +193,7 @@ python download_checkpoint.py
 
 4. 下載完成後解壓縮
 
-5. 將所有檔案放入 \`./checkpoints/\` 目錄
+5. 將所有檔案放入 `./checkpoints/` 目錄
 
 ### 如何設定 Google Drive 分享權限 (提供者參考)
 
@@ -203,7 +203,7 @@ python download_checkpoint.py
 2. 右鍵點擊資料夾 → "Share" → "Get link"
 3. 設定為 "Anyone with the link" → "Viewer"
 4. 複製分享連結
-5. 從連結中提取 Folder ID (格式: \`https://drive.google.com/drive/folders/<FOLDER_ID>\`)
+5. 從連結中提取 Folder ID (格式: `https://drive.google.com/drive/folders/<FOLDER_ID>`)
 
 ---
 
@@ -227,9 +227,9 @@ python download_checkpoint.py
 
 ### Q3: 如何調整訓練參數?
 
-**A**: 編輯 \`train_gpt_oss_20b.py\` 中的參數區塊:
+**A**: 編輯 `train_gpt_oss_20b.py` 中的參數區塊:
 
-\`\`\`python
+```python
 # LoRA 設定
 LORA_R = 32  # Rank (越大越複雜)
 LORA_ALPHA = 32
@@ -238,15 +238,15 @@ NUM_TRAIN_EPOCHS = 300  # Epoch 數量
 # 訓練設定
 LEARNING_RATE = 2e-4
 PER_DEVICE_TRAIN_BATCH_SIZE = 4
-\`\`\`
+```
 
 ### Q4: GPU 記憶體不足怎麼辦?
 
 **A**: 嘗試以下方法：
-1. 啟用 4-bit 量化: \`LOAD_IN_4BIT = True\`
-2. 減少 batch size: \`PER_DEVICE_TRAIN_BATCH_SIZE = 2\`
-3. 減少序列長度: \`MAX_SEQ_LENGTH = 512\`
-4. 減少 LoRA rank: \`LORA_R = 16\`
+1. 啟用 4-bit 量化: `LOAD_IN_4BIT = True`
+2. 減少 batch size: `PER_DEVICE_TRAIN_BATCH_SIZE = 2`
+3. 減少序列長度: `MAX_SEQ_LENGTH = 512`
+4. 減少 LoRA rank: `LORA_R = 16`
 
 ### Q5: 下載 checkpoint 失敗?
 
@@ -257,30 +257,30 @@ PER_DEVICE_TRAIN_BATCH_SIZE = 4
 
 ### Q6: 支援哪些資料格式?
 
-**A**: 目前支援 CSV 格式，必須包含 \`input\` 和 \`output\` 兩個欄位。
+**A**: 目前支援 CSV 格式，必須包含 `input` 和 `output` 兩個欄位。
 
-範例請參考 \`data/SEMI_Fine_Tuning_Data.csv\`。
+範例請參考 `data/SEMI_Fine_Tuning_Data.csv`。
 
 ---
 
 ## 故障排除
 
-### 問題: \`ImportError: No module named 'unsloth'\`
+### 問題: `ImportError: No module named 'unsloth'`
 
 **解決方案**:
-\`\`\`bash
+```bash
 pip install unsloth
-\`\`\`
+```
 
 ### 問題: CUDA Out of Memory
 
 **解決方案**:
-\`\`\`python
+```python
 # 在 train_gpt_oss_20b.py 中設定
 LOAD_IN_4BIT = True
 PER_DEVICE_TRAIN_BATCH_SIZE = 2
 MAX_SEQ_LENGTH = 512
-\`\`\`
+```
 
 ### 問題: 下載速度很慢
 
@@ -292,21 +292,21 @@ MAX_SEQ_LENGTH = 512
 ### 問題: 找不到訓練資料
 
 **解決方案**:
-\`\`\`bash
+```bash
 # 確認檔案路徑和名稱
 ls data/SEMI_Fine_Tuning_Data.csv
 
 # 檢查檔案格式
 head data/SEMI_Fine_Tuning_Data.csv
-\`\`\`
+```
 
 ### 問題: Tokenizer 錯誤
 
 **解決方案**:
 確保下載了完整的 checkpoint，包含:
-- \`tokenizer.json\`
-- \`tokenizer_config.json\`
-- \`special_tokens_map.json\`
+- `tokenizer.json`
+- `tokenizer_config.json`
+- `special_tokens_map.json`
 
 ---
 
@@ -314,7 +314,7 @@ head data/SEMI_Fine_Tuning_Data.csv
 
 ### 調整 LoRA 參數
 
-\`\`\`python
+```python
 # 更大的 Rank = 更強的表達能力，但需要更多記憶體
 LORA_R = 64
 LORA_ALPHA = 64
@@ -328,11 +328,11 @@ LORA_TARGET_MODULES = [
     "gate_proj", "up_proj", "down_proj",
     "embed_tokens", "lm_head"  # 額外層
 ]
-\`\`\`
+```
 
 ### 使用不同的優化器
 
-\`\`\`python
+```python
 # AdamW 8-bit (預設，記憶體效率高)
 OPTIM = "adamw_8bit"
 
@@ -341,11 +341,11 @@ OPTIM = "adamw_torch"
 
 # SGD with momentum
 OPTIM = "sgd"
-\`\`\`
+```
 
 ### 調整學習率排程
 
-\`\`\`python
+```python
 # Linear (預設)
 LR_SCHEDULER_TYPE = "linear"
 
@@ -354,11 +354,11 @@ LR_SCHEDULER_TYPE = "cosine"
 
 # Constant
 LR_SCHEDULER_TYPE = "constant"
-\`\`\`
+```
 
 ### 啟用混合精度訓練
 
-\`\`\`python
+```python
 # 自動檢測 (預設)
 fp16=not is_bfloat16_supported(),
 bf16=is_bfloat16_supported()
@@ -366,24 +366,24 @@ bf16=is_bfloat16_supported()
 # 強制使用 FP16
 fp16=True,
 bf16=False
-\`\`\`
+```
 
 ### 自訂資料集分割
 
-\`\`\`python
+```python
 # 調整測試集和驗證集大小
 TEST_SIZE = 200  # 測試集 200 筆
 # 驗證集也會是 200 筆
 
 # 或使用百分比
 test_size=0.2  # 20% 作為測試集
-\`\`\`
+```
 
 ---
 
 ## 專案結構
 
-\`\`\`
+```
 GPT-OSS-20B-Fine-Tuning-Tutorial/
 ├── README.md                    # 本檔案
 ├── requirements.txt             # Python 依賴套件
@@ -397,7 +397,7 @@ GPT-OSS-20B-Fine-Tuning-Tutorial/
 └── checkpoints/                 # Checkpoint 目錄
     ├── README.md                # Checkpoint 說明
     └── (下載後的檔案)
-\`\`\`
+```
 
 ---
 
