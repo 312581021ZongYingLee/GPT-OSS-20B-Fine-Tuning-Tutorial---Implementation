@@ -27,6 +27,7 @@
 
 ### Step 1: 建立虛擬環境 (建議)
 
+
 \`\`\`bash
 # 使用 conda
 conda create -n gpt-finetune python=3.10
@@ -37,6 +38,7 @@ python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate  # Windows
 \`\`\`
+
 
 ### Step 2: 安裝依賴套件
 
