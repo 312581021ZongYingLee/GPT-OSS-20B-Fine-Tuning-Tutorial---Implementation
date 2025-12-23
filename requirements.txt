@@ -1,0 +1,26 @@
+# GPT-OSS-20B Fine-Tuning Tutorial - Requirements
+# ===============================================
+
+# 核心依賴
+unsloth
+torch>=2.0.0
+transformers>=4.35.0
+datasets
+trl
+
+# 下載工具
+gdown
+
+# 評估工具
+evaluate
+nltk
+rouge-score
+sacrebleu
+
+# 資料處理
+pandas
+numpy
+tqdm
+
+# 其他工具
+openpyxl  # for Excel export

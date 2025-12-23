@@ -1,0 +1,68 @@
+# GPT-OSS-20B Fine-Tuning Tutorial - Git Ignore
+# ==============================================
+
+# Checkpoints (下載後才會有)
+checkpoints/*.safetensors
+checkpoints/*.bin
+checkpoints/*.json
+checkpoints/*.model
+!checkpoints/README.md
+
+# 訓練輸出
+outputs/
+processed_dataset*/
+evaluation_results/
+Result/
+*.pth
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Data files (使用者需自備資料)
+data/*.csv
+!data/sample_data.csv  # 保留範例資料
+!data/README.md
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Excel
+~$*.xlsx
+~$*.xls
