@@ -92,8 +92,6 @@ df.to_csv('data/SEMI_Fine_Tuning_Data.csv', index=False)
 
 ## 注意事項
 
-⚠️ **重要**: 本 repository 包含實際訓練資料 `SEMI_Fine_Tuning_Data.csv`。
-
 ✅ 如需使用自己的資料，請替換此檔案或修改腳本中的 `CSV_FILE` 路徑
 
 🔒 大型訓練資料會被 `.gitignore` 排除，不會被提交至 Git
